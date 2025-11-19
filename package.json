@@ -1,0 +1,13 @@
+{
+  "name": "directus-mcp-server",
+  "version": "1.0.0",
+  "description": "Directus MCP Server Bridge",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["mcp", "directus", "ai"],
+  "author": "Pierre Maciel",
+  "license": "ISC",
+  "dependencies": {}
+}
