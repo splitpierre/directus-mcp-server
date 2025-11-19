@@ -14,11 +14,15 @@ Set the following environment variables:
 ## Usage with Docker
 
 ```bash
+# Assuming directus is running on 8055, and you have a user with API token
 docker run -i --rm \
   --network=host \
   -e DIRECTUS_URL="http://localhost:8055" \
   -e DIRECTUS_TOKEN="your-token" \
   ghcr.io/splitpierre/directus-mcp-server:main
+
+# Updating
+docker pull ghcr.io/splitpierre/directus-mcp-server:main
 ```
 
 ## Configuration for Antigravity/Windsurf IDE
