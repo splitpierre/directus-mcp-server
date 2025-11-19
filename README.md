@@ -15,7 +15,44 @@ Set the following environment variables:
 
 ```bash
 docker run -i --rm \
-  -e DIRECTUS_URL="https://your-directus.com" \
+  --network=host \
+  -e DIRECTUS_URL="http://localhost:8055" \
   -e DIRECTUS_TOKEN="your-token" \
-  ghcr.io/splitpierre/directus-mcp-server:latest
+  ghcr.io/splitpierre/directus-mcp-server:main
 ```
+
+## Configuration for Antigravity/Windsurf IDE
+
+Add the following to your `~/.gemini/antigravity/mcp_config.json` (or equivalent config file):
+
+```json
+{
+  "mcpServers": {
+    "directus-mcp-server": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "--network=host",
+        "-e",
+        "DIRECTUS_URL",
+        "-e",
+        "DIRECTUS_TOKEN",
+        "ghcr.io/splitpierre/directus-mcp-server:main"
+      ],
+      "env": {
+        "DIRECTUS_URL": "http://localhost:8055",
+        "DIRECTUS_TOKEN": "your-directus-token"
+      },
+      "disabledTools": [
+        "flows",
+        "trigger-flow"
+      ]
+    }
+  }
+}
+```
+
+> [!NOTE]
+> The `--network=host` flag is required if your Directus instance is running on `localhost`. If Directus is on a remote server, you can omit this flag.
