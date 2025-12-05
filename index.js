@@ -92,12 +92,12 @@ async function forwardToDirectus(message) {
 /**
  * Check if we should exit
  */
-function checkExit() {
-  if (stdinClosed && pendingRequests === 0) {
-    stderr.write("MCP server bridge closed\n");
-    process.exit(0);
-  }
-}
+// function checkExit() {
+//   if (stdinClosed && pendingRequests === 0) {
+//     stderr.write("MCP server bridge closed\n");
+//     process.exit(0);
+//   }
+// }
 
 /**
  * Process incoming JSON-RPC message from stdin
@@ -142,7 +142,7 @@ async function processMessage(line) {
     stdout.write(JSON.stringify(errorResponse) + "\n");
   } finally {
     pendingRequests--;
-    checkExit();
+    // checkExit();
   }
 }
 
@@ -154,10 +154,10 @@ rl.on("line", (line) => {
 });
 
 // Handle stdin close
-rl.on("close", () => {
-  stdinClosed = true;
-  checkExit();
-});
+// rl.on("close", () => {
+  // stdinClosed = true;
+  // checkExit();
+// });
 
 // Log startup
 stderr.write(`Directus MCP Server Bridge started\n`);
